@@ -1,0 +1,30 @@
+import java.awt.Toolkit;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Program1 {
+  Toolkit toolkit;
+
+  Timer timer;
+  
+
+  public Program1(int seconds) {
+    toolkit = Toolkit.getDefaultToolkit();
+    timer = new Timer();
+    timer.schedule(new RemindTask(), seconds * 1000);
+  }
+
+  class RemindTask extends TimerTask {
+    public void run() {
+      System.out.println("Time is up!");
+      toolkit.beep();
+      System.exit(0); 
+    }
+  }
+
+  public static void main(String args[]) {
+    System.out.println("Prepairing launch...");
+    new Program1(10);
+    System.out.println("Timer started");
+  }
+}
